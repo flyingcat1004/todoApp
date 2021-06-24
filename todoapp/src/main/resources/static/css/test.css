@@ -1,0 +1,28 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/earlyaccess/hannari.css');
+
+.maintytle {
+	
+	font-family: "Hannari";
+	
+	padding: 20px;
+		
+}
+
+#button{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#mokuji{
+	margin-top:20px;
+}
+
+.second{
+	margin: 20px;
+}
+
+.first{
+	padding-right: 300px;
+	padding-left: 300px;
+}
