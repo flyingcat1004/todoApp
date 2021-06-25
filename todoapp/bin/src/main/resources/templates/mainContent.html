@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>todoApp</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<link rel="stylesheet" th:href="@{/../css/test.css}" type="text/css">
+</head>
+<body>
+	<div class="container">
+		<header>
+			<h1 class="maintytle" id="asita">今日を無駄にするな</h1>
+		</header>
+		
+		<div class="first col-sm-12">
+			<form th:action="@{/todo/create}" th:oject="${content}" class="form-horizontal" method="post">
+				<div class="form-group">
+					
+						<div>
+							<label for="content" class="col-sm-2 control-label"></label>
+							<input placeholder="やること登録" type="text"  id="todo" name="todo" th:value="*{todo}" class="form-control" >
+							<button type="submit" id="button" class="col-sm-12 btn btn-outline-primary">登録</button>
+						</div>
+				</div>
+			</form>
+		</div>
+		
+		<h3 class="second">todoリスト</h3>
+		<div id="mokuji" class="col-sm-12">
+			<table class="table table-striped table-bordered table-condensed">
+				<tr>
+					<th >No.</th>
+					<th>やること</th>
+					<th>登録日</th>
+					<th colspan="2">編集</th>
+					<th>変更</th>
+				</tr>	
+				
+				<tr th:each="content:${contents}" th:object="${content}" >
+					
+						<td th:unless="*{finished}" th:text="*{id}"></td>
+						<td th:unless="*{finished}" th:text="*{todo}"></td>
+						<td th:unless="*{finished}" th:text="*{date}"></td>
+						
+						
+						<td th:unless="*{finished}">
+							<form th:action="@{/todo/edit}" method="get">
+								<input class="btn btn-outline-info" type="submit" value="編集">
+								<input type="hidden" name="id" th:value="*{id}">
+							</form>
+						</td>
+						<td th:unless="*{finished}">
+							<form th:action="@{/todo/delete}" method="post">
+								<input class="btn btn-outline-danger" type="submit" value="削除">
+								<input type="hidden" name="id" th:value="*{id}">
+							</form>
+						</td>
+						<td th:unless="*{finished}">
+							<form th:action="@{/todo/editF}" method="post">
+								<input type="hidden" class="form-check-input" name="bbb" th:value="1">
+								<input type="hidden" name="id" th:value="*{id}">
+								<input class="btn btn-outline-info" type="submit" value="タスク完了">
+							</form>
+						</td>
+					
+				</tr>
+				
+				
+			</table>
+		</div>
+		
+		
+		
+		
+		<h3 class="second">完了したタスク</h3>
+		<div id="mokuji" class="col-sm-12">
+			<table class="table table-striped table-bordered table-condensed">
+				<tr>
+					<th >No.</th>
+					<th>やること</th>
+					<th>登録日</th>
+					<th colspan="2">編集</th>
+					<th>変更</th>
+				</tr>	
+				
+				<tr th:each="content:${contents}" th:object="${content}" >
+					<td th:if="*{finished}" th:text="*{id}"></td>
+					<td th:if="*{finished}" th:text="*{todo}"></td>
+					<td th:if="*{finished}" th:text="*{date}"></td>
+					
+					
+					
+					
+					<td th:if="*{finished}">
+						<form th:action="@{/todo/edit}" method="get">
+							<input class="btn btn-outline-info" type="submit" value="編集">
+							<input type="hidden" name="id" th:value="*{id}">
+						</form>
+					</td>
+					<td th:if="*{finished}">
+						<form th:action="@{/todo/delete}" method="post">
+							<input class="btn btn-outline-danger" type="submit" value="削除">
+							<input type="hidden" name="id" th:value="*{id}">
+						</form>
+					</td>
+					<td th:if="*{finished}">
+						<form th:action="@{/todo/editF}" method="post">
+							
+							
+							
+							<input type="hidden" class="form-check-input" name="bbb"  th:value="0">
+							<input type="hidden" name="id" th:value="*{id}">
+							
+							<input class="btn btn-outline-info" type="submit" value="未完にする">
+						</form>
+					</td>
+				</tr>
+				
+				
+			</table>
+		</div>
+	</div>
+
+
+a
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+</body>
+</html>
