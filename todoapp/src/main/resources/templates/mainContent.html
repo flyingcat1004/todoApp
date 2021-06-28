@@ -19,7 +19,8 @@
 					
 						<div>
 							<label for="content" class="col-sm-2 control-label"></label>
-							<input placeholder="やること登録" type="text"  id="todo" name="todo" th:value="*{todo}" class="form-control" >
+							<input placeholder="やること登録" type="text" name="todo" class="form-control" >
+							<input type="datetime-local" name="deadline" class="form-control">
 							<button type="submit" id="button" class="col-sm-12 btn btn-outline-primary">登録</button>
 						</div>
 				</div>
@@ -33,6 +34,7 @@
 					<th >No.</th>
 					<th>やること</th>
 					<th>登録日</th>
+					<th>期限</th>
 					<th colspan="2">編集</th>
 					<th>変更</th>
 				</tr>	
@@ -41,8 +43,8 @@
 					
 						<td th:unless="*{finished}" th:text="*{id}"></td>
 						<td th:unless="*{finished}" th:text="*{todo}"></td>
-						<td th:unless="*{finished}" th:text="*{date}"></td>
-						
+						<td th:unless="*{finished}" th:text="*{#temporals.format(date, 'yyyy/MM/dd HH:mm')}"></td>
+						<td th:unless="*{finished}" th:text="*{deadline}"></td>
 						
 						<td th:unless="*{finished}">
 							<form th:action="@{/todo/edit}" method="get">
@@ -80,6 +82,7 @@
 					<th >No.</th>
 					<th>やること</th>
 					<th>登録日</th>
+					<th>期限</th>
 					<th colspan="2">編集</th>
 					<th>変更</th>
 				</tr>	
@@ -87,7 +90,7 @@
 				<tr th:each="content:${contents}" th:object="${content}" >
 					<td th:if="*{finished}" th:text="*{id}"></td>
 					<td th:if="*{finished}" th:text="*{todo}"></td>
-					<td th:if="*{finished}" th:text="*{date}"></td>
+					<td th:if="*{finished}" th:text="*{#temporals.format(date, 'yyyy/MM/dd HH:mm')}"></td>
 					
 					
 					

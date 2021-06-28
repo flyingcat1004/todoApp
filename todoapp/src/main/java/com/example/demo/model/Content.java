@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.metamodel.StaticMetamodel;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,7 +19,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Content {
 	@Id
 	@GeneratedValue
@@ -29,10 +27,14 @@ public class Content {
 	@NotBlank
 	private String todo;
 	
+	
 	@NotNull
 	private LocalDateTime date = LocalDateTime.now();
 	
 	private boolean finished = false;
-		
+	
+	
+	@NotNull
+	private LocalDateTime deadline;
 	
 }

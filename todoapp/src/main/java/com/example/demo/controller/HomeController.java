@@ -64,4 +64,22 @@ public class HomeController {
 		contentService.update(content);
 		return "redirect:/todo/";
 	}
+	
+	@GetMapping("/edit")
+	public String editodo(@RequestParam Long id, Model model) {
+		Content content = contentService.findOne(id);
+		model.addAttribute(content);
+		return "todoedit";
+	}
+	
+	@PostMapping("/edit")
+	public String editsave(@Validated @ModelAttribute Content content) {
+		Content contentmain = contentService.findOne(content.getId());
+		contentmain.setTodo(content.getTodo());
+		contentService.update(contentmain);
+		return "redirect:/todo/";
+	}
+	
+	
+	
 }
