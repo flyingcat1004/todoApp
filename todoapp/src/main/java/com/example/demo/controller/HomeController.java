@@ -43,7 +43,11 @@ public class HomeController {
 	@PostMapping("/create")
 	public String create(@Validated @ModelAttribute Content content, BindingResult result, Model model) {
 		model.addAttribute("contents", contentService.findAll());
+		
 		if(result.hasErrors()) {
+			System.out.println(result.getFieldErrors());
+		
+
 			return "mainContent";
 		}
 		

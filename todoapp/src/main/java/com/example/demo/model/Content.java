@@ -1,15 +1,19 @@
 package com.example.demo.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
-import com.sun.istack.NotNull;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Component
 public class Content {
 	@Id
 	@GeneratedValue
@@ -34,7 +39,9 @@ public class Content {
 	private boolean finished = false;
 	
 	
-	@NotNull
-	private LocalDateTime deadline;
 	
+	private String deadlineDate;// = LocalDateTime.now();
+	
+	
+	private String deadTime;
 }
