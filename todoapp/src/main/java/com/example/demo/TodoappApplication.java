@@ -22,7 +22,7 @@ public class TodoappApplication /*implements CommandLineRunner*/ {
 	@Autowired
 	ContentService contentService;
 	
-	private final ApplicationContext appContext;
+	
 
 	
 	public static void main(String[] args) {
