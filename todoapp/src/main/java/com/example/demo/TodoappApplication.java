@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @SpringBootApplication
-public class TodoappApplication implements CommandLineRunner {
+public class TodoappApplication /*implements CommandLineRunner*/ {
 	
 	@Autowired
 	ContentService contentService;
@@ -37,13 +37,13 @@ public class TodoappApplication implements CommandLineRunner {
 		
 	}*/
 	
-	@Override
+	/*@Override
     public void run(String... args) throws Exception {
         String[] allBeanNames = appContext.getBeanDefinitionNames();
         for (String beanName: allBeanNames) {
             log.info("Bean名: {}", beanName);
         }
-    }
+    }*/
 	
 	
 }

@@ -80,6 +80,8 @@ public class HomeController {
 	public String editsave(@Validated @ModelAttribute Content content) {
 		Content contentmain = contentService.findOne(content.getId());
 		contentmain.setTodo(content.getTodo());
+		contentmain.setDeadlineDate(content.getDeadlineDate());
+		contentmain.setDeadTime(content.getDeadTime());
 		contentService.update(contentmain);
 		return "redirect:/todo/";
 	}

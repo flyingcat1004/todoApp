@@ -18,9 +18,10 @@
 				<div class="form-group">
 					
 						<div>
-							<label for="content" class="col-sm-2 control-label"></label>
-							<input placeholder="やること登録" type="text" th:field="*{todo}" class="input1 form-control" >
-							<p class="input1 text-center fs-3">期限設定</p>
+							<input placeholder="やること登録" type="text" th:field="*{todo}" class="input1 form-control"
+							th:errorclass="is-invalid" >
+							<div class="invalid-feedback" th:errors="*{todo}"></div>
+							<p class="input1 text-center fs-2">期限設定</p>
 							<input type="date" th:field="*{deadlineDate}" class="input1 form-control">
 							<input type="time" th:field="*{deadTime}" class="input1 form-control">
 							<button type="submit" id="button" class="col-sm-12 btn btn-outline-primary">登録</button>
