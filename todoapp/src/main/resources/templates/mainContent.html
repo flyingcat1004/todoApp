@@ -9,10 +9,41 @@
 </head>
 <body>
 	<div class="container">
-		<header>
-			<h1 class="maintytle" id="asita">今日を無駄にするな</h1>
-		</header>
+		<div class="contents">
+			<div>
+				<h1 class="maintytle" id="asita">今日を無駄にするな</h1>
+			</div>
+			
+			<div class="l text-end">
+				<a th:href="@{/logout}" class="btn btn-outline-primary">ログアウト</a>
+			</div>
+		</div>
 		
+		<div class="card shadow">
+			<div sec:authorize="hasRole('ROOT')">you are ROOT</div>
+            <div class="card-header">
+              <h6 class="text-navy my-2">
+                ログイン情報
+              </h6>
+            </div>
+            <div class="card-body table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>ログインユーザ名</th>
+                    <th>ユーザ権限</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td th:text="${username}"></td>
+                    <td th:text="${role}"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+        <br>
 		<div class="col-sm-12">
 			<form th:action="@{/todo/create}" th:object="${content}" class="form-horizontal" method="post">
 				<div class="form-group">

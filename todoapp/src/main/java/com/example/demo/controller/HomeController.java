@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,7 +30,9 @@ public class HomeController {
 	}
 	
 	@GetMapping("/")
-	public String main(@ModelAttribute Content content, Model model) {
+	public String main(@ModelAttribute Content content, Authentication loginUser, Model model) {
+		model.addAttribute("username", loginUser.getName());
+		model.addAttribute("role", loginUser.getAuthorities());
 		model.addAttribute("contents", contentService.findAll());
 		return "mainContent";
 	}

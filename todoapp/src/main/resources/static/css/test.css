@@ -31,3 +31,10 @@
 	margin-top: 20px;
 	font-family: "Kiwi Maru"
 }
+.contents{
+	display: flex;
+}
+
+.l{
+	margin-top: 28px;
+}
