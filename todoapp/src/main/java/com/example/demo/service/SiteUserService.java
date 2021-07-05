@@ -22,6 +22,12 @@ public class SiteUserService {
     	Optional<SiteUser> siteUser = siteUserRepository.findById(id);
         return siteUser.get();
     }
+    
+    public SiteUser findOneByName(String name) {
+    	SiteUser siteUser = siteUserRepository.findByUsername(name);
+    	return siteUser;
+		
+	}
 
     public SiteUser create(SiteUser siteUser) {
         return siteUserRepository.save(siteUser);

@@ -13,13 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.Content;
+import com.example.demo.model.SiteUser;
 import com.example.demo.service.ContentService;
+import com.example.demo.service.SiteUserService;
 
 
 
 @Controller
 @RequestMapping("/todo")
 public class HomeController {
+	@Autowired
+	SiteUserService siteUserService;
 	
 	@Autowired
 	ContentService contentService;
@@ -31,9 +35,12 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String main(@ModelAttribute Content content, Authentication loginUser, Model model) {
+		
 		model.addAttribute("username", loginUser.getName());
 		model.addAttribute("role", loginUser.getAuthorities());
-		model.addAttribute("contents", contentService.findAll());
+		//model.addAttribute("contents", contentService.findAll());
+		SiteUser siteUser = siteUserService.findOneByName(loginUser.getName());
+		model.addAttribute("contents", siteUser.getContents());
 		return "mainContent";
 	}
 	
@@ -44,7 +51,7 @@ public class HomeController {
 	}
 	
 	@PostMapping("/create")
-	public String create(@Validated @ModelAttribute Content content, BindingResult result, Model model) {
+	public String create(@Validated @ModelAttribute Content content, BindingResult result, Authentication loginUser, Model model) {
 		model.addAttribute("contents", contentService.findAll());
 		
 		if(result.hasErrors()) {
@@ -54,6 +61,7 @@ public class HomeController {
 			return "mainContent";
 		}
 		
+		content.setSiteUser(siteUserService.findOneByName(loginUser.getName()));
 		contentService.create(content);
 		return "redirect:/todo/";
 	}
