@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.SearchContentM;
+import com.example.demo.model.SiteUser;
+import com.example.demo.repository.SiteUserRepository;
 import com.example.demo.service.ContentService;
+import com.example.demo.service.SiteUserService;
 
 
 @Controller
@@ -20,6 +23,8 @@ public class SearchController {
 	@Autowired
 	ContentService contentService;
 	
+	@Autowired
+	SiteUserService siteUserService;
 	@GetMapping("/")
 	public String searchHome(@ModelAttribute SearchContentM searchContentM, Model model) {
 		
@@ -27,12 +32,10 @@ public class SearchController {
 	}
 	
 	@PostMapping("/")
-	public String searchContent(@Validated @ModelAttribute SearchContentM searchContentM, BindingResult result, Model model) {
-		if(result.hasErrors()) {
-			System.out.println(result.getFieldErrors());
-			return "searchHome";
-		}
-		model.addAttribute("contents", contentService.search(searchContentM.getTodo()));
+	public String searchContent(@Validated @ModelAttribute SearchContentM searchContentM, Model model) {
+		
+		SiteUser siteUser = siteUserService.findOneByName(searchContentM.getSiteUserName());
+		model.addAttribute("contents", contentService.search(searchContentM.getTodo(), searchContentM.getDeadlineDate(), siteUser));
 		
 		return "searchHome";
 	}

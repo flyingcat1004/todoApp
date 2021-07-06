@@ -24,10 +24,18 @@
 						<div>
 							<input placeholder="やること検索" type="text" th:field="*{todo}" class="input1 form-control col-sm-10">
 							
-							<input type="button" value="クリア" class="clearForm col-sm-1 btn btn-outline-primary">
-							<script type="text/javascript" th:src="@{/../js/script.js}"></script>
- 							<button type="submit" id="button" class="col-sm-12 btn btn-outline-primary">検索</button>
-						</div>
+ 						</div>
+ 						<div>
+							<input placeholder="登録日検索 yyyy-MM-dd" type="text" th:field="*{deadlineDate}" class="input1 form-control col-sm-10">
+							
+ 						</div>
+ 						<div>
+							<input placeholder="ユーザー検索" type="text" th:field="*{siteUserName}" class="input1 form-control col-sm-10">
+							
+ 						</div>
+						<input type="button" value="クリア" class="l clearForm col-sm-1 btn btn-outline-primary">
+						<button type="submit" id="button" class="col-sm-12 btn btn-outline-primary">検索</button>
+						<script type="text/javascript" th:src="@{/../js/script.js}"></script>
 				</div>
 		</form>
 		

@@ -3,6 +3,7 @@ package com.example.demo.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.stereotype.Component;
@@ -28,5 +29,5 @@ public class SearchContentM {
 	
 	private String deadlineDate;
 	
-	private String deadTime;
+	private String siteUserName;
 }
