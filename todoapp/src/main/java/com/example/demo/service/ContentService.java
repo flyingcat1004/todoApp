@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +33,11 @@ public class ContentService {
     }
 
     public void delete(Long id) {
-        contentRepository.deleteById(id);;
+        contentRepository.deleteById(id);
+    }
+    
+    public List<Content> search(String todo) {
+    	List<Content> contents = contentRepository.findByTodoLike("%" + todo + "%");
+    	return contents;
     }
 }
