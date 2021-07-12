@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -32,6 +33,7 @@ public class Content {
 	private Long id;
 	
 	@NotBlank
+	@Size(max = 100)
 	private String todo;
 	
 	

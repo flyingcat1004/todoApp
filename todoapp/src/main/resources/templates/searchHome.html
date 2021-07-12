@@ -22,16 +22,22 @@
 				<div class="form-group">
 					
 						<div>
-							<input placeholder="やること検索" type="text" th:field="*{todo}" class="input1 form-control col-sm-10">
-							
+							<input placeholder="やること検索" type="text" th:field="*{todo}" class="input1 form-control col-sm-10" th:errorclass="is-invalid">
+							<div class="invalid-feedback" th:errors="*{todo}"></div>
  						</div>
  						<div>
-							<input placeholder="登録日検索 yyyy-MM-dd" type="text" th:field="*{deadlineDate}" class="input1 form-control col-sm-10">
-							
+							<input placeholder="登録日検索 yyyy-MM-dd" type="text" th:field="*{deadlineDate}" class="input1 form-control col-sm-10" th:errorclass="is-invalid">
+							<div class="invalid-feedback" th:errors="*{deadlineDate}"></div>
  						</div>
  						<div>
-							<input placeholder="ユーザー検索" type="text" th:field="*{siteUserName}" class="input1 form-control col-sm-10">
-							
+ 							<select class="input1 form-control col-sm-10" th:field="*{siteUserName}">
+ 								<option value="">選択しない</option>
+ 								<option  th:each="userName : ${userNames}"
+ 										th:value="${userName.getUsername()}"
+ 										th:text="${userName.getUsername()}"></option>
+ 							</select>
+							<!--<input placeholder="ユーザー検索" type="text" th:field="*{siteUserName}" class="input1 form-control col-sm-10" th:errorclass="is-invalid">
+							<div class="invalid-feedback" th:errors="*{siteUserName}"></div>-->
  						</div>
 						<input type="button" value="クリア" class="l clearForm col-sm-1 btn btn-outline-primary">
 						<button type="submit" id="button" class="col-sm-12 btn btn-outline-primary">検索</button>
@@ -62,13 +68,13 @@
 						<td  th:text="*{deadTime}"> 
 						
 						<td>
-							<form th:action="@{/todo/edit}" method="get">
+							<form th:action="@{/search/edit}" method="get">
 								<input class="btn btn-outline-info" type="submit" value="編集">
 								<input type="hidden" name="id" th:value="*{id}">
 							</form>
 						</td>
 						<td>
-							<form th:action="@{/todo/delete}" method="post">
+							<form th:action="@{/search/delete}" method="post">
 								<input class="btn btn-outline-danger" type="submit" value="削除">
 								<input type="hidden" name="id" th:value="*{id}">
 							</form>
