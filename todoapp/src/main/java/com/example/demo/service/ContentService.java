@@ -57,9 +57,13 @@ public class ContentService {
        	}else if(todo.equals("") && siteUser==null && deadlineDate.length()>0) {
        		contents = contentRepository.findByDeadlineDate(deadlineDate);
        		
-       	}else if(todo.length()>0 && siteUser==null && deadlineDate.equals("")) {
-       		contents = contentRepository.findByTodoLike("%" + todo + "%");
-       	}
+        }else if(todo.length()>0 && siteUser==null && deadlineDate.equals("")) {
+                contents = contentRepository.findByTodoLike("%" + todo + "%");
+
+        }else if(todo.length()>0 && siteUser!=null && deadlineDate.length()>0) {
+                contents = contentRepository
+                                .findByTodoLikeAndDeadlineDateAndSiteUser("%" + todo + "%", deadlineDate, siteUser);
+        }
     	
     		
     	return contents;
