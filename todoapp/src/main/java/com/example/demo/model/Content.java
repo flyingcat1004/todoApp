@@ -1,8 +1,6 @@
 package com.example.demo.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,7 +42,8 @@ public class Content {
 	
 	
 	
-	private String deadlineDate;// = LocalDateTime.now();
+        // Stores the deadline date in yyyy-MM-dd format
+        private String deadlineDate;
 	
 	
 	private String deadTime;
